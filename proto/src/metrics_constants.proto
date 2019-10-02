@@ -6507,5 +6507,6 @@ message MetricsEvent {
     // Bootleggers Metrics
     BOOTLEG = 3210;
 
+    KOWALSKI_ACTION = 9000;
   }
 }

@@ -2260,4 +2260,9 @@
     <!-- Gesture Anywhere -->
     <string name="gestures_message">Draw your gesture here</string>
 
+    <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE On</string>
+    <string name="lte_off">LTE Off</string>
+
 </resources>
