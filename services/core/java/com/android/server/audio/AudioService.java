@@ -45,6 +45,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothHearingAid;
 import android.bluetooth.BluetoothProfile;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -720,6 +721,9 @@ public class AudioService extends IAudioService.Stub
 
     private boolean mVisualizerLocked;
 
+    private boolean mOpenPlayer;
+    private boolean mOpenPlayerBt;
+
     ///////////////////////////////////////////////////////////////////////////
     // Construction
     ///////////////////////////////////////////////////////////////////////////
@@ -742,6 +746,12 @@ public class AudioService extends IAudioService.Stub
 
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mHasVibrator = mVibrator == null ? false : mVibrator.hasVibrator();
+
+	mOpenPlayer = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.HEADSET_STARTS_MUSIC_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
+
+	mOpenPlayerBt = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.BT_STARTS_MUSIC_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
 
         mHasAlertSlider = mContext.getResources().getBoolean(R.bool.config_hasAlertSlider)
                 && !TextUtils.isEmpty(mContext.getResources().getString(R.string.alert_slider_state_path))
@@ -3825,6 +3835,16 @@ public class AudioService extends IAudioService.Stub
                 result |= handleDeviceConnection(isActive, outDeviceType, address, btDeviceName);
             }
         }
+
+	if (mOpenPlayerBt && isActive) {
+	    for (int outDeviceType : outDeviceTypes) {
+		if (outDeviceType != AudioSystem.DEVICE_OUT_BLUETOOTH_SCO_CARKIT) {
+            	    startMusicPlayer();
+		    break;
+		}
+	    }
+	}
+
         // handleDeviceConnection() && result to make sure the method get executed
         result = handleDeviceConnection(isActive, inDevice, address, btDeviceName) && result;
         return result;
@@ -5866,6 +5886,12 @@ public class AudioService extends IAudioService.Stub
                     Settings.Global.ENCODED_SURROUND_OUTPUT_ENABLED_FORMATS), false, this);
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.VOLUME_KEYS_CONTROL_RING_TONE), false, this);
+
+	    mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADSET_STARTS_MUSIC_PLAYER), false, this);
+
+	    mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BT_STARTS_MUSIC_PLAYER), false, this);
         }
 
         @Override
@@ -5898,6 +5924,12 @@ public class AudioService extends IAudioService.Stub
                     updateStreamVolumeAlias(true, TAG);
                 }
             }
+
+	    mOpenPlayer = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.HEADSET_STARTS_MUSIC_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
+
+            mOpenPlayerBt = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.BT_STARTS_MUSIC_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
         }
 
         private void updateEncodedSurroundOutput() {
@@ -6358,15 +6390,36 @@ public class AudioService extends IAudioService.Stub
         }
     }
 
+    private void startMusicPlayer() {
+        TelecomManager tm = (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+
+        if (!tm.isInCall()) {
+            try {
+                Intent playerIntent = new Intent(Intent.ACTION_MAIN);
+                playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
+                playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(playerIntent);
+            } catch (ActivityNotFoundException | IllegalArgumentException e) {
+                Log.w(TAG, "No music player Activity could be found");
+            }
+        }
+    }
+
     private void updateAudioRoutes(int device, int state)
     {
         int connType = 0;
 
         if (device == AudioSystem.DEVICE_OUT_WIRED_HEADSET) {
             connType = AudioRoutesInfo.MAIN_HEADSET;
+	    if (mOpenPlayer && state == 1) {
+		startMusicPlayer();
+	    }
         } else if (device == AudioSystem.DEVICE_OUT_WIRED_HEADPHONE ||
                    device == AudioSystem.DEVICE_OUT_LINE) {
             connType = AudioRoutesInfo.MAIN_HEADPHONES;
+	    if (mOpenPlayer && state == 1) {
+		startMusicPlayer();
+	    }
         } else if (device == AudioSystem.DEVICE_OUT_HDMI ||
                 device == AudioSystem.DEVICE_OUT_HDMI_ARC) {
             connType = AudioRoutesInfo.MAIN_HDMI;
