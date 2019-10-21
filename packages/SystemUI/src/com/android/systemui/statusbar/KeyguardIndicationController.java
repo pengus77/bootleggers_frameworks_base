@@ -364,12 +364,15 @@ public class KeyguardIndicationController {
     }
 
     private void updateChargingIndication() {
+    /*
         if (!mDozing && mPowerPluggedIn) {
             mChargingIndication.setVisibility(View.VISIBLE);
             mChargingIndication.playAnimation();
         } else {
             mChargingIndication.setVisibility(View.GONE);
         }
+    */
+        mChargingIndication.setVisibility(View.GONE);
     }
 
     // animates textView - textView moves up and bounces down
@@ -415,28 +418,55 @@ public class KeyguardIndicationController {
         }
         final boolean hasChargingTime = chargingTimeRemaining > 0;
 
+	final boolean showBatteryInfo = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.LOCKSCREEN_BATTERY_INFO, 1, UserHandle.USER_CURRENT) == 1;
+
         int chargingId;
         if (mPowerPluggedInWired) {
             switch (mChargingSpeed) {
                 case KeyguardUpdateMonitor.BatteryStatus.CHARGING_FAST:
-                    chargingId = hasChargingTime
+		    if (showBatteryInfo) {
+			chargingId = hasChargingTime
+			    ? R.string.keyguard_indication_short_charging_time
+			    : R.string.empty;
+		    } else {
+                    	chargingId = hasChargingTime
                             ? R.string.keyguard_indication_charging_time_fast
                             : R.string.keyguard_plugged_in_charging_fast;
+		    }
                     break;
                 case KeyguardUpdateMonitor.BatteryStatus.CHARGING_DASH:
-                    chargingId = hasChargingTime
-                            ? R.string.keyguard_indication_dash_charging_time
+		    if (showBatteryInfo) {
+			chargingId = hasChargingTime
+			    ? R.string.keyguard_indication_short_charging_time
+			    : R.string.empty;
+		    } else {
+                    	chargingId = hasChargingTime
+			    ? R.string.keyguard_indication_dash_charging_time
                             : R.string.keyguard_plugged_in_dash_charging;
+		    }
                     break;
                 case KeyguardUpdateMonitor.BatteryStatus.CHARGING_TURBO_POWER:
-                    chargingId = hasChargingTime
+		    if (showBatteryInfo) {
+			chargingId = hasChargingTime
+			    ? R.string.keyguard_indication_short_charging_time
+			    : R.string.empty;
+		    } else {
+                    	chargingId = hasChargingTime
                             ? R.string.keyguard_indication_turbo_power_time
                             : R.string.keyguard_plugged_in_turbo_power_charging;
+		    }		    
                     break;
                 case KeyguardUpdateMonitor.BatteryStatus.CHARGING_SLOWLY:
-                    chargingId = hasChargingTime
+		    if (showBatteryInfo) {
+			chargingId = hasChargingTime
+			    ? R.string.keyguard_indication_short_charging_time
+			    : R.string.empty;
+		    } else {
+                    	chargingId = hasChargingTime
                             ? R.string.keyguard_indication_charging_time_slowly
                             : R.string.keyguard_plugged_in_charging_slowly;
+		    }
                     break;
                 default:
                     chargingId = hasChargingTime
@@ -451,9 +481,8 @@ public class KeyguardIndicationController {
         }
 
         String batteryInfo = "";
-        boolean showbatteryInfo = Settings.System.getIntForUser(mContext.getContentResolver(),
-            Settings.System.LOCKSCREEN_BATTERY_INFO, 1, UserHandle.USER_CURRENT) == 1;
-         if (showbatteryInfo) {
+        if (showBatteryInfo) {
+	    batteryInfo = "Charging at ";
             if (mChargingCurrent > 0) {
                 batteryInfo = batteryInfo + (mChargingCurrent < 5 ?
                           (mChargingCurrent * 1000) : (mChargingCurrent < 4000 ?
@@ -466,9 +495,6 @@ public class KeyguardIndicationController {
             if (mTemperature > 0) {
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
                         mTemperature / 10 + "°C";
-            }
-            if (batteryInfo != "") {
-                batteryInfo = "\n" + batteryInfo;
             }
         }
 
@@ -484,7 +510,16 @@ public class KeyguardIndicationController {
             try {
                 String chargingText = mContext.getResources().getString(chargingId, chargingTimeFormatted,
                         percentage);
-                return chargingText + batteryInfo;
+
+		if (showBatteryInfo) {
+			if (chargingText.isEmpty()) {
+				return batteryInfo;
+			} else {
+                		return batteryInfo + " · " + chargingText;
+			}
+		}
+
+                return chargingText;
             } catch (IllegalFormatConversionException e) {
                 String chargingText =  mContext.getResources().getString(chargingId, chargingTimeFormatted);
                 return chargingText + batteryInfo;
@@ -493,10 +528,19 @@ public class KeyguardIndicationController {
             // Same as above
             try {
                 String chargingText =  mContext.getResources().getString(chargingId, percentage);
-                return chargingText + batteryInfo;
+
+		if (showBatteryInfo) {
+			if (chargingText.isEmpty()) {
+				return batteryInfo;
+			} else {
+                		return batteryInfo + " · " + chargingText;
+			}
+		}
+
+                return chargingText;
             } catch (IllegalFormatConversionException e) {
                 String chargingText =  mContext.getResources().getString(chargingId);
-                return chargingText + batteryInfo;
+                return chargingText;
             }
         }
     }
