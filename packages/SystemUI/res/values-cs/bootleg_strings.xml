@@ -86,7 +86,6 @@
     <string name="search">Hledat</string>
     <string name="nav_bar_layout_inverse">Prohodit tlačítka Nedávné a Zpět</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Ikona ve stavové liště</string>
     <string name="statusbar_icons_blacklist">Ikony ve stavové liště</string>
     <string name="navbar_tuner_activity">Tlačítka navigačního panelu</string>
     <string name="lockscreen_tuner_activity">Zkratky na zamykací obrazovce</string>

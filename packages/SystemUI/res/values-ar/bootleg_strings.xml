@@ -83,7 +83,6 @@
     <string name="menu_ime_always_show">مبدل القائمة/لوحة المفاتيح (اظهار دائماً)</string>
     <string name="search">بحث</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">رمز شريط الحـالة</string>
     <string name="statusbar_icons_blacklist">رموز شريط الحالة</string>
     <string name="navbar_tuner_activity">أزرار شريط التنقل</string>
     <string name="lockscreen_tuner_activity">إختصارات شاشة القفل</string>

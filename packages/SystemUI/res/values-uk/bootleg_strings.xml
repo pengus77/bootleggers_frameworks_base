@@ -86,7 +86,6 @@
     <string name="search">Пошук</string>
     <string name="nav_bar_layout_inverse">Поміняти клавіші \"Назад\" та \"Нещодавні\"</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Значок в рядку стану</string>
     <string name="statusbar_icons_blacklist">Значки в рядку стану</string>
     <string name="navbar_tuner_activity">Клавіші панелі навігації</string>
     <string name="lockscreen_tuner_activity">Ярлики на екрані блокування</string>

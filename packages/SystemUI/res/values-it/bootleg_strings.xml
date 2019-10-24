@@ -88,7 +88,6 @@
     <string name="search">Ricerca</string>
     <string name="nav_bar_layout_inverse">Scambia i pulsanti indietro e recenti</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Icona barra di stato</string>
     <string name="statusbar_icons_blacklist">Icone barra di stato</string>
     <string name="navbar_tuner_activity">Pulsanti della barra di navigazione</string>
     <string name="lockscreen_tuner_activity">Scorciatoie schermata di blocco</string>

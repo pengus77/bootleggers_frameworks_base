@@ -86,7 +86,6 @@
     <string name="search">Búsqueda</string>
     <string name="nav_bar_layout_inverse">Intercambiar botones de atrás y recientes</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Icono de la barra de estado</string>
     <string name="statusbar_icons_blacklist">Iconos de la barra de estado</string>
     <string name="navbar_tuner_activity">Botones de barra de navegación</string>
     <string name="lockscreen_tuner_activity">Accesos directos de la pantalla de bloqueo</string>

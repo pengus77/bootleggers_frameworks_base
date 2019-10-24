@@ -86,7 +86,6 @@
     <string name="search">Cari</string>
     <string name="nav_bar_layout_inverse">Tukar kembali dan terkini</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Ikon bilah status</string>
     <string name="statusbar_icons_blacklist">Ikon Status bar</string>
     <string name="navbar_tuner_activity">Tombol bar navigasi</string>
     <string name="lockscreen_tuner_activity">Pintasan kunci layar</string>

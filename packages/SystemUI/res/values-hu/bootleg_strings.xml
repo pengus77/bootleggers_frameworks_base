@@ -86,8 +86,6 @@
     <string name="search">Keresés</string>
     <string name="nav_bar_layout_inverse">A Vissza és Előzmények gombok felcserelése</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Állapotsor-ikon</string>
-    <string name="statusbar_icons_blacklist">Állapotsor-ikonok</string>
     <string name="navbar_tuner_activity">Navigációs sáv gombok</string>
     <string name="lockscreen_tuner_activity">Parancsikonok a záróképernyőn</string>
     <string name="powernotif_tuner_activity">Kikapcsolási értesítések</string>

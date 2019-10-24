@@ -86,7 +86,6 @@
     <string name="search">検索</string>
     <string name="nav_bar_layout_inverse">戻るとアプリ履歴を入れ替える</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">ステータスバーのアイコン</string>
     <string name="statusbar_icons_blacklist">ステータスバーのアイコン</string>
     <string name="navbar_tuner_activity">ナビゲーションバーのボタン</string>
     <string name="lockscreen_tuner_activity">ショートカット</string>

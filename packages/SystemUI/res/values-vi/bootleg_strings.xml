@@ -86,7 +86,6 @@
     <string name="search">Tìm kiếm</string>
     <string name="nav_bar_layout_inverse">Đổi phím quay lại và gần đây</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Biểu tượng thanh trạng thái</string>
     <string name="statusbar_icons_blacklist">Biểu tượng thanh trạng thái</string>
     <string name="navbar_tuner_activity">Nút thanh điều hướng</string>
     <string name="lockscreen_tuner_activity">Lối tắt Màn hình khoá</string>

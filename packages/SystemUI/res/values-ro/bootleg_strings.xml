@@ -86,7 +86,6 @@
     <string name="search">Caută</string>
     <string name="nav_bar_layout_inverse">Înlocuiește tastele înapoi și recente</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Elemente bară de stare</string>
     <string name="statusbar_icons_blacklist">Pictograme bară de stare</string>
     <string name="navbar_tuner_activity">Butoane pentru bara de navigare</string>
     <string name="lockscreen_tuner_activity">Comenzi rapide pentru ecranul de blocare</string>

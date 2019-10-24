@@ -86,7 +86,6 @@
     <string name="search">搜索​​​​</string>
     <string name="nav_bar_layout_inverse">交换返回和最近任务键</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">状态栏图标</string>
     <string name="statusbar_icons_blacklist">状态栏图标</string>
     <string name="navbar_tuner_activity">导航栏按钮</string>
     <string name="lockscreen_tuner_activity">锁屏快捷键</string>

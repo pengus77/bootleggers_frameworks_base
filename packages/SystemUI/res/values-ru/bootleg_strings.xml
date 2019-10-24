@@ -86,7 +86,6 @@
     <string name="search">Поиск</string>
     <string name="nav_bar_layout_inverse">Поменять местами кнопки Назад и Недавние</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Значок в панели уведомления</string>
     <string name="statusbar_icons_blacklist">Значки в строке состояния</string>
     <string name="navbar_tuner_activity">Кнопки панели навигации</string>
     <string name="lockscreen_tuner_activity">Ярлыки в нижних углах</string>

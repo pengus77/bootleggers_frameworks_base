@@ -86,7 +86,6 @@
     <string name="search">Suche</string>
     <string name="nav_bar_layout_inverse">Tausche \"Zurück\" und \"Anwendungsverlauf\" Tasten</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Statusleisten-Symbol</string>
     <string name="statusbar_icons_blacklist">Statusleistensymbole</string>
     <string name="navbar_tuner_activity">Tasten der Navigationsleiste</string>
     <string name="lockscreen_tuner_activity">Sperrbildschirm-Verknüpfungen</string>

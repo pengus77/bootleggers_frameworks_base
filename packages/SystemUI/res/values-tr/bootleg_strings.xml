@@ -86,7 +86,6 @@
     <string name="search">Ara</string>
     <string name="nav_bar_layout_inverse">Geri ve son uygulama tuşlarının yerini değiştir</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Durum çubuğu simgeleri</string>
     <string name="statusbar_icons_blacklist">Durum çubuğu simgeleri</string>
     <string name="navbar_tuner_activity">Gezinme çubuğu tuşları</string>
     <string name="lockscreen_tuner_activity">Kilit ekran kısayolları</string>

@@ -72,7 +72,6 @@
     <!-- NavBar Tuner -->
     <string name="menu_ime_always_show">Meny / Tangentbord Bytare (Visas alltid)</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Statusfältsikon</string>
     <string name="statusbar_icons_blacklist">Statusfältsikoner</string>
     <string name="navbar_tuner_activity">Navigeringsfälts knappar</string>
     <string name="powernotif_tuner_activity">Powermeddelanden</string>

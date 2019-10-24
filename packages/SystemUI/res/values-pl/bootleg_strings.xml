@@ -86,7 +86,6 @@
     <string name="search">Szukaj</string>
     <string name="nav_bar_layout_inverse">Zamień przyciski Wstecz i Ostatnich aplikacji</string>
     <!-- SysUI Tuner -->
-    <string name="statusbar_items_title">Ikona paska stanu</string>
     <string name="statusbar_icons_blacklist">Ikony paska stanu</string>
     <string name="navbar_tuner_activity">Przyciski paska nawigacji</string>
     <string name="lockscreen_tuner_activity">Skróty ekranu blokady</string>
